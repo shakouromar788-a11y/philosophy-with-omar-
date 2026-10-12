@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة الإدارة | Philosophy with Omar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Philosophy with Omar</h1>
+    <p>لوحة إدارة الأسئلة</p>
+  </header>
+
+  <div class="container">
+    <!-- شاشة تسجيل الدخول -->
+    <div id="login-screen" class="card login-box">
+      <h2>تسجيل الدخول</h2>
+      <p>أدخل كلمة المرور للوصول إلى لوحة الإدارة</p>
+      <input type="password" id="password-input" placeholder="كلمة المرور" autocomplete="current-password">
+      <button id="login-btn" class="btn btn-primary btn-block">دخول</button>
+      <p id="login-error" style="color:#e53e3e; margin-top:12px; display:none;">كلمة المرور غير صحيحة</p>
+    </div>
+
+    <!-- لوحة الإدارة -->
+    <div id="admin-panel" style="display:none;">
+      <div class="instructions">
+        <strong>طريقة التحديث على GitHub Pages:</strong>
+        <ol>
+          <li>عدّل الأسئلة من هنا (إضافة / تعديل / حذف)</li>
+          <li>اضغط على زر <strong>«تحميل ملف الأسئلة»</strong></li>
+          <li>ارفع الملف الذي نزل عندك مكان ملف <code>questions.json</code> في مستودع GitHub</li>
+          <li>اعمل Commit وانتظر دقيقة حتى يتحدث الموقع</li>
+        </ol>
+      </div>
+
+      <div class="admin-header">
+        <h2>الأسئلة (<span id="q-count">0</span>)</h2>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button id="add-btn" class="btn btn-success">+ إضافة سؤال</button>
+          <button id="export-btn" class="btn btn-primary">تحميل ملف الأسئلة</button>
+          <a href="index.html" class="btn btn-secondary">عرض الموقع</a>
+        </div>
+      </div>
+
+      <div id="questions-list"></div>
+
+      <div id="no-questions" class="card empty-state" style="display:none;">
+        <h2>لا توجد أسئلة بعد</h2>
+        <p>اضغط على «إضافة سؤال» لتبدأ</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- نافذة إضافة / تعديل سؤال -->
+  <div id="modal" class="modal-overlay">
+    <div class="modal">
+      <h2 id="modal-title">إضافة سؤال جديد</h2>
+
+      <div class="form-group">
+        <label for="q-text">نص السؤال</label>
+        <textarea id="q-text" placeholder="اكتب السؤال هنا..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="opt0">الخيار أ</label>
+        <input type="text" id="opt0" placeholder="الخيار الأول">
+      </div>
+      <div class="form-group">
+        <label for="opt1">الخيار ب</label>
+        <input type="text" id="opt1" placeholder="الخيار الثاني">
+      </div>
+      <div class="form-group">
+        <label for="opt2">الخيار ج</label>
+        <input type="text" id="opt2" placeholder="الخيار الثالث">
+      </div>
+      <div class="form-group">
+        <label for="opt3">الخيار د</label>
+        <input type="text" id="opt3" placeholder="الخيار الرابع">
+      </div>
+
+      <div class="form-group">
+        <label for="correct">الإجابة الصحيحة</label>
+        <select id="correct" class="correct-select">
+          <option value="0">أ</option>
+          <option value="1">ب</option>
+          <option value="2">ج</option>
+          <option value="3">د</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="explanation">شرح الإجابة (اختياري)</label>
+        <textarea id="explanation" placeholder="شرح يظهر للطالب بعد الإجابة..."></textarea>
+      </div>
+
+      <div class="actions">
+        <button id="save-btn" class="btn btn-success">حفظ السؤال</button>
+        <button id="cancel-btn" class="btn btn-secondary">إلغاء</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>كلمة المرور الافتراضية: <strong>falsafa2026</strong> (يمكنك تغييرها من ملف admin.js)</p>
+  </footer>
+
+  <script src="admin.js"></script>
+</body>
+</html>
